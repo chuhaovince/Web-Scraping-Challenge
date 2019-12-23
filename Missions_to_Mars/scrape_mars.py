@@ -20,8 +20,8 @@ def scrape():
     browser.visit(url)
     html = browser.html
     soup = bs(html, "lxml")
-    Mars_data["news_title"] = soup.find("div", class_="content_title").a.text
-    Mars_data["news_p"] = soup.find("div", class_="article_teaser_body").text
+    Mars_data["news_title"] = soup.find("div", class_="content_title").a.get_text()
+    Mars_data["news_p"] = soup.find("div", class_="article_teaser_body").get_text()
 
     # open initial website find full img url
     url = "https://www.jpl.nasa.gov/spaceimages/?search=&category=Mars"
@@ -47,7 +47,13 @@ def scrape():
     browser.visit(url)
     html = browser.html
     soup = bs(html,"lxml")
-    Mars_data['weather'] = soup.find("p", class_ = "tweet-text").text
+    Mars_data['weather'] = soup.find("p", class_ = "tweet-text").get_text()
+
+    # Mars Weather
+    url = "https://space-facts.com/mars/"
+    df = pd.read_html(url)
+    df = df[0]
+    Mars_data['table'] = df.to_html()
 
     # mars hemispheres
     #open main web page
@@ -62,7 +68,7 @@ def scrape():
     #loop through each hemisophere and get title and image link
     for img in imgs:
         hemisphere = {}
-        title = img.find('div', class_="description").a.h3.text
+        title = img.find('div', class_="description").a.h3.get_text()
         browser.click_link_by_partial_text(title)
         html = browser.html
         soup = bs(html,"lxml")
