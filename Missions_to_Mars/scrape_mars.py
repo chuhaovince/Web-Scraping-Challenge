@@ -53,7 +53,7 @@ def scrape():
     url = "https://space-facts.com/mars/"
     df = pd.read_html(url)
     df = df[0]
-    Mars_data['table'] = df.to_html()
+    Mars_data['table'] = df.to_html(classes = "table table-striped")
 
     # mars hemispheres
     #open main web page

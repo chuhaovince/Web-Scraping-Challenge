@@ -26,7 +26,7 @@
         <h3 class="heading"><strong>{{mars_data.news_title}}</strong></h3>
         <p>{{mars_data.news_p}}</p>
         <h2 class="heading"><strong>Featured Mars Image</strong></h2>
-        <img src = {{mars_data.featured_img}} class = "center">
+        <img src = {{mars_data.featured_img}} style = "margin-left:auto;margin-right:auto;display: block;">
       </div>
     </div>
   </div>
@@ -39,7 +39,9 @@
       </div>
       <div class = "col-md-6">
         <h2 class="heading"><strong>Mars Facts</strong></h2>
-        <div w3-include-html="mars_facts.html"></div>
+        <script>
+        document.write("{{mars_data.table}}");
+        </script>
       </div>
     </div>
   </div>
