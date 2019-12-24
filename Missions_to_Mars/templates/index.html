@@ -5,9 +5,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Hot Finds</title>
+  <title>Mission to Mars</title>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-  <link rel="stylesheet" type = "text/css" href="../static/css/style.css">
 </head>
 
 <body>
@@ -26,7 +25,7 @@
         <h3 class="heading"><strong>{{mars_data.news_title}}</strong></h3>
         <p>{{mars_data.news_p}}</p>
         <h2 class="heading"><strong>Featured Mars Image</strong></h2>
-        <img src = {{mars_data.featured_img}} style = "margin-left:auto;margin-right:auto;display: block;">
+        <img src = {{mars_data.featured_img}} style = "display:block; width:100%; height:auto;">
       </div>
     </div>
   </div>
@@ -39,25 +38,82 @@
       </div>
       <div class = "col-md-6">
         <h2 class="heading"><strong>Mars Facts</strong></h2>
-        <script>
-        document.write("{{mars_data.table}}");
-        </script>
+        <table border="1" class="dataframe">
+          <thead>
+            <tr style="text-align: center;">
+              <th></th>
+              <th>description</th>
+              <th>value</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th>0</th>
+              <td>Equatorial Diameter:</td>
+              <td>6,792 km</td>
+            </tr>
+            <tr>
+              <th>1</th>
+              <td>Polar Diameter:</td>
+              <td>6,752 km</td>
+            </tr>
+            <tr>
+              <th>2</th>
+              <td>Mass:</td>
+              <td>6.39 x 10^23 kg (0.11 Earths)</td>
+            </tr>
+            <tr>
+              <th>3</th>
+              <td>Moons:</td>
+              <td>2 (Phobos &amp; Deimos)</td>
+            </tr>
+            <tr>
+              <th>4</th>
+              <td>Orbit Distance:</td>
+              <td>227,943,824 km (1.38 AU)</td>
+            </tr>
+            <tr>
+              <th>5</th>
+              <td>Orbit Period:</td>
+              <td>687 days (1.9 years)</td>
+            </tr>
+            <tr>
+              <th>6</th>
+              <td>Surface Temperature:</td>
+              <td>-87 to -5 °C</td>
+            </tr>
+            <tr>
+              <th>7</th>
+              <td>First Record:</td>
+              <td>2nd millennium BC</td>
+            </tr>
+            <tr>
+              <th>8</th>
+              <td>Recorded By:</td>
+              <td>Egyptian astronomers</td>
+            </tr>
+          </tbody>
+        </table>
       </div>
     </div>
   </div>
 
   <div class = "container">
     <div class = "row">
-      <div class = "col-md-12">
-        <h2 class="heading" style = "text-align: center;"><strong>Mars Hemispheres</strong></h2>
-        <ul>
-          {% for hemisphere in mars_data.hemispheres %}
-            <li style = "display: inline;">
-            <img src = {{hemisphere.img_url}} style="width:50%; margin-left:auto;margin-right:auto;display: block;"> 
-            <p style = "text-align: center;"><strong> {{hemisphere.title}} </strong></p>
-            </li>
-          {% endfor %}
-        </ul>
+      <h2 class="heading" style = "text-align: center;"><strong>Mars Hemispheres</strong></h2>
+      <div class = "col-md-6">
+        <img src = {{mars_data.hemispheres[0].img_url}} style = "display:block; width:100%; height:auto;"> 
+        <h3 style = "text-align: center;"><strong> {{mars_data.hemispheres[0].title}} </strong></h3>
+        <hr class = "my-3">
+        <img src = {{mars_data.hemispheres[1].img_url}} style = "display:block; width:100%; height:auto;"> 
+        <h3 style = "text-align: center;"><strong> {{mars_data.hemispheres[1].title}} </strong></h3>
+      </div>
+      <div class = "col-md-6">
+        <img src = {{mars_data.hemispheres[2].img_url}} style = "display:block; width:100%; height:auto;"> 
+        <h3 style = "text-align: center;"><strong> {{mars_data.hemispheres[2].title}} </strong></h3>
+        <hr class = "my-3">
+        <img src = {{mars_data.hemispheres[3].img_url}} style = "display:block; width:100%; height:auto;"> 
+        <h3 style = "text-align: center;"><strong> {{mars_data.hemispheres[3].title}} </strong></h3>
       </div>
     </div>
   </div>
