@@ -49,7 +49,7 @@ def scrape():
     soup = bs(html,"lxml")
     Mars_data['weather'] = soup.find("p", class_ = "tweet-text").text
 
-    # Mars Weather
+    # Mars facts
     url = "https://space-facts.com/mars/"
     df = pd.read_html(url)
     df = df[0]
