@@ -1,6 +1,7 @@
 from splinter import Browser
 from bs4 import BeautifulSoup as bs
 import pandas as pd
+import datetime as dt
 
 
 def init_browser():
@@ -53,7 +54,9 @@ def scrape():
     url = "https://space-facts.com/mars/"
     df = pd.read_html(url)
     df = df[0]
-    Mars_data['table'] = df.to_html()
+    df.columns = ["description", "value"]
+    df.set_index("description", inplace=True)
+    Mars_data['table'] = df.to_html(classes='table table-striped')
 
     # mars hemispheres
     #open main web page
@@ -81,5 +84,8 @@ def scrape():
     
     # close browser
     browser.quit()
+
+    # when this page is modified
+    Mars_data["last_updated"] = dt.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
 
     return Mars_data
